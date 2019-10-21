@@ -38,6 +38,15 @@
 			$result = mysqli_query($conn,$sql);
 			$fAge = array();
 			$mAge = array();
+				
+			function sexAvg($age){
+				if(count($age)==0){
+					echo '0';
+				}else{
+					$avg=round((array_sum($age)/count($age)),2);
+					echo $avg;
+				}
+			}
 			
 			while($row = mysqli_fetch_array($result)){
 				$name = $row['name'];
@@ -66,20 +75,10 @@
 						echo $date;
 					echo '</td>';
 					echo '<td>';
-						if(count($fAge)==0){
-							echo '0';
-						}else{
-							$avg = round((array_sum($fAge)/count($fAge)),2);
-							echo $avg;
-						}
+						sexAvg($fAge);
 					echo '</td>';
 					echo '<td>';
-						if(count($mAge)==0){
-							echo '0';
-						}else{
-							$avg = round((array_sum($mAge)/count($mAge)),2);
-							echo $avg;
-						};
+						sexAvg($mAge);
 					echo '</td>';
 				echo '</tr>';
 			echo '</tbody>';
@@ -144,20 +143,10 @@
 						echo $date;
 					echo '</td>';
 					echo '<td>';
-						if(count($fAge)==0){
-							echo '0';
-						}else{
-							$avg = round((array_sum($fAge)/count($fAge)),2);
-							echo $avg;
-						}
+						sexAvg($fAge);
 					echo '</td>';
 					echo '<td>';
-						if(count($mAge)==0){
-							echo '0';
-						}else{
-							$avg = round((array_sum($mAge)/count($mAge)),2);
-							echo $avg;
-						};
+						sexAvg($mAge);
 					echo '</td>';
 				echo '</tr>';
 				}

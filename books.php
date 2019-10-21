@@ -29,30 +29,30 @@
 			</thead>
 			<tbody>
 		<?php
-			$book='ZieLoNa MiLa';
-			$sql="SELECT b.id, b.name, b.book_date, r.book_id, r.age, r.sex 
+			$book = 'ZieLoNa MiLa';
+			$sql = "SELECT b.id, b.name, b.book_date, r.book_id, r.age, r.sex 
 				FROM books b
-				INNER JOIN reviews r ON r.book_id=b.id
-				WHERE b.name='$book'
+				INNER JOIN reviews r ON r.book_id = b.id
+				WHERE b.name = '$book'
 				AND r.age>=30";
-			$result=mysqli_query($conn,$sql);
-			$fAge=array();
-			$mAge=array();
+			$result = mysqli_query($conn,$sql);
+			$fAge = array();
+			$mAge = array();
 			
-			while($row=mysqli_fetch_array($result)){
-				$name=$row['name'];
-				$date=$row['book_date'];
-				$name=strtolower($name);
-				$book=strtolower($book);
+			while($row = mysqli_fetch_array($result)){
+				$name = $row['name'];
+				$date = $row['book_date'];
+				$name = strtolower($name);
+				$book = strtolower($book);
 				$sim = similar_text($name, $book, $perc);
-				$comp=round($perc, 2);
-					if(($row['sex'])=='f'){
-						$fAge[]=$row['age'];
-					};
-					if(($row['sex'])=='m'){
-						$mAge[]=$row['age'];
-					};
-					$name=$row['name'];
+				$comp = round($perc, 2);
+				if(($row['sex'])=='f'){
+					$fAge[] = $row['age'];
+				}
+				if(($row['sex'])=='m'){
+					$mAge[] = $row['age'];
+				}
+				$name = $row['name'];
 				
 			}
 				echo '<tr>';
@@ -69,7 +69,7 @@
 						if(count($fAge)==0){
 							echo '0';
 						}else{
-							$avg=round((array_sum($fAge)/count($fAge)),2);
+							$avg = round((array_sum($fAge)/count($fAge)),2);
 							echo $avg;
 						}
 					echo '</td>';
@@ -77,7 +77,7 @@
 						if(count($mAge)==0){
 							echo '0';
 						}else{
-							$avg=round((array_sum($mAge)/count($mAge)),2);
+							$avg = round((array_sum($mAge)/count($mAge)),2);
 							echo $avg;
 						};
 					echo '</td>';
@@ -108,31 +108,30 @@
 			<tbody>
 		<?php 
 			
-			$book='ZiElonA Droga';
-			$sql="SELECT DISTINCT b.id, b.name, b.book_date, r.book_id, r.age, r.sex 
+			$book = 'ZiElonA Droga';
+			$sql = "SELECT DISTINCT b.id, b.name, b.book_date, r.book_id, r.age, r.sex 
 			FROM books b
-			INNER JOIN reviews r ON r.book_id=b.id
+			INNER JOIN reviews r ON r.book_id = b.id
 			WHERE r.age<30
 			GROUP BY b.name";
-			$result=mysqli_query($conn,$sql);
-			//vd($result);
-			$fAge=array();
-			$mAge=array();
-			while($row=mysqli_fetch_array($result)){
+			$result = mysqli_query($conn,$sql);
+			$fAge = array();
+			$mAge = array();
+			while($row = mysqli_fetch_array($result)){
 				if($book!==$row['name']){
-				$name=$row['name'];
-				$date=$row['book_date'];
-				$name=strtolower($name);
-				$book=strtolower($book);
+				$name = $row['name'];
+				$date = $row['book_date'];
+				$name = strtolower($name);
+				$book = strtolower($book);
 				$sim = similar_text($name, $book, $perc);
-				$comp=round($perc, 2);
-					if(($row['sex'])=='f'){
-						$fAge[]=$row['age'];
-					};
-					if(($row['sex'])=='m'){
-						$mAge[]=$row['age'];
-					};
-				$name=$row['name'];
+				$comp = round($perc, 2);
+				if(($row['sex'])=='f'){
+					$fAge[] = $row['age'];
+				};
+				if(($row['sex'])=='m'){
+					$mAge[] = $row['age'];
+				};
+				$name = $row['name'];
 				
 				echo '<tr>';
 					echo '<td>';
@@ -148,7 +147,7 @@
 						if(count($fAge)==0){
 							echo '0';
 						}else{
-							$avg=round((array_sum($fAge)/count($fAge)),2);
+							$avg = round((array_sum($fAge)/count($fAge)),2);
 							echo $avg;
 						}
 					echo '</td>';
@@ -156,7 +155,7 @@
 						if(count($mAge)==0){
 							echo '0';
 						}else{
-							$avg=round((array_sum($mAge)/count($mAge)),2);
+							$avg = round((array_sum($mAge)/count($mAge)),2);
 							echo $avg;
 						};
 					echo '</td>';
